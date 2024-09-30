@@ -21,4 +21,7 @@ interface Film {
   imageUrl?: string;
 }
 
-export type { Pizza, NewPizza, PizzaToUpdate, Film };
+type newFilm= Omit<Film, "id">;
+
+
+export type { Pizza, NewPizza, PizzaToUpdate, Film, newFilm };

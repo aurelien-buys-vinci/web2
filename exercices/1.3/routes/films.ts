@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { Film } from "../types";
+import { newFilm,Film } from "../types";
 
 
 const router = Router();
@@ -38,9 +38,7 @@ const films: Film[] = [
     }
   ];
 
-router.get("/", (_req,res) => {
-    return res.json(films);
-});
+
 
 router.get("/", (req, res) => {
   if (!req.query["minimum-duration"]) {
@@ -49,7 +47,7 @@ router.get("/", (req, res) => {
   }
   const durationMin = Number(req.query["minimum-duration"]);
   const filteredFilm = films.filter((film) => {
-    return film.duration > durationMin ;
+    return film.duration >= durationMin ;
   });
   return res.json(filteredFilm);
 });
@@ -62,6 +60,56 @@ router.get("/:id", (req, res) => {
   }
   return res.json(film);
 });
+
+router.post("/", (req, res) => {
+  const body: unknown = req.body;
+  if (
+    !body ||
+    typeof body !== "object" ||
+    !("title" in body) ||
+    !("director" in body) ||
+    !("duration" in body) ||
+    typeof body.title !== "string" ||
+    typeof body.director !== "string" ||
+    typeof body.duration !== "number" ||
+    !body.title.trim() ||
+    !body.director.trim() ||
+    isNaN(body.duration) ||
+    body.duration <= 0 ||
+    (("budget" in body) && (typeof body.budget !== "number" ||isNaN(body.budget)|| body.budget < 0)) ||
+    (("description" in body) && (typeof body.description !== "string" || !body.description.trim())) ||
+    (("imageUrl" in body) && (typeof body.imageUrl !== "string" || !body.imageUrl.trim()))
+  ) {
+    return res.sendStatus(400);
+  }
+
+
+
+
+
+  const {title, director, duration, budget, description, imageUrl} = body as newFilm;
+  if (!title || !director || !duration){ 
+    return res.sendStatus(400);
+  }
+
+  const nextId =
+    films.reduce((maxId, film) => (film.id > maxId ? film.id : maxId), 0) +
+    1;
+
+  const newFilm: Film = {
+    id: nextId,
+    title,
+    director,
+    duration,
+    budget,
+    description,
+    imageUrl
+  };
+
+  films.push(newFilm);
+  return res.json(newFilm);
+});
+
 
 
 export default router;

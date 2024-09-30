@@ -1,0 +1,19 @@
+@baseUrl = http://localhost:3000/films
+
+###READ ALL FILTERED
+GET {{baseUrl}}/?minimum-duration=140
+
+###REAL ONE FILM
+
+GET {{baseUrl}}/2
+
+###CREATE FILM
+
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "title":"testcdhs",
+    "director":"goerge",
+    "duration":134
+}
