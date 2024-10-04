@@ -83,10 +83,6 @@ router.post("/", (req, res) => {
     return res.sendStatus(400);
   }
 
-
-
-
-
   const {title, director, duration, budget, description, imageUrl} = body as newFilm;
   if (!title || !director || !duration){ 
     return res.sendStatus(400);
@@ -110,6 +106,15 @@ router.post("/", (req, res) => {
   return res.json(newFilm);
 });
 
+router.delete("/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const index = films.findIndex((film) => film.id === id);
+  if (index === -1) {
+    return res.sendStatus(404);
+  }
+  const deletedElements = films.splice(index, 1); // splice() returns an array of the deleted elements
+  return res.json(deletedElements[0]);
+});
 
 
 export default router;

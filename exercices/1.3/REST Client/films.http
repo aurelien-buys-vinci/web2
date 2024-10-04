@@ -15,5 +15,6 @@ Content-Type: application/json
 {
     "title":"testcdhs",
     "director":"goerge",
-    "duration":134
+    "duration":134,
+    "description":"ubniezub"
 }
