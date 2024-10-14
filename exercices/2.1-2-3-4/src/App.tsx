@@ -1,37 +1,3 @@
-import './App.css';
-
-const PageTitle = ({ title }: { title: string }) => {
-  return <h1>{title}</h1>;
-};
-
-const Cinema = ({
-  name,
-  movie1Title,
-  movie1Director,
-  movie2Title,
-  movie2Director,
-}: {
-  name: string;
-  movie1Title: string;
-  movie1Director: string;
-  movie2Title: string;
-  movie2Director: string;
-}) => {
-  return (
-    <div>
-      <h2>{name}</h2>
-      <ul>
-        <li>
-          <strong>{movie1Title}</strong> - Réalisateur : {movie1Director}
-        </li>
-        <li>
-          <strong>{movie2Title}</strong> - Réalisateur : {movie2Director}
-        </li>
-      </ul>
-    </div>
-  );
-};
-
 const App = () => {
   const pageTitle = "Informations sur les films dans les cinémas";
 
@@ -69,5 +35,31 @@ const App = () => {
     </div>
   );
 };
+
+const PageTitle = (props: { title: string }) => {
+  return <h1>{props.title}</h1>;
+};
+
+const Cinema = (props: {
+  name: string;
+  movie1Title: string;
+  movie1Director: string;
+  movie2Title: string;
+  movie2Director: string;
+}) => (
+  <div>
+    <h2>{props.name}</h2>
+    <ul>
+      <li>
+        <strong>{props.movie1Title}</strong> - Réalisateur :{" "}
+        {props.movie1Director}
+      </li>
+      <li>
+        <strong>{props.movie2Title}</strong> - Réalisateur :{" "}
+        {props.movie2Director}
+      </li>
+    </ul>
+  </div>
+);
 
 export default App;
