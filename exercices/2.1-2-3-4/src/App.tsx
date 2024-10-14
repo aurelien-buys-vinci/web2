@@ -33,7 +33,6 @@ const App = () => {
   );
 };
 
-
 interface PageTitleProps {
   title: string;
 }
@@ -49,11 +48,9 @@ interface Movie {
   director: string;
 }
 
-const PageTitle = (pageTitle: PageTitleProps ) => {
+const PageTitle = (pageTitle: PageTitleProps) => {
   return <h1>{pageTitle.title}</h1>;
 };
-
-
 
 const Cinema = (props: CinemaProps) => (
   <div>
