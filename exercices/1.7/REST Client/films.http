@@ -32,7 +32,7 @@ Content-Type: application/json
 
 ### Put a film
 
-PUT {{baseUrl}}/7
+PUT {{baseUrl}}/2
 Content-Type: application/json
 
 {
