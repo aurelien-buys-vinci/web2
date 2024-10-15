@@ -129,4 +129,107 @@ router.delete("/:id", (req, res) => {
 });
 
 
+router.patch("/:id", (req, res) => {
+  const id = Number(req.params.id);
+  const film = films.find((film) => film.id === id);
+  if (!film) {
+    return res.sendStatus(404);
+  }
+
+  const body: unknown = req.body;
+
+  if (
+    !body ||
+    typeof body !== "object" ||
+    ("title" in body &&
+      (typeof body.title !== "string" || !body.title.trim())) ||
+    ("director" in body &&
+      (typeof body.director !== "string" || !body.director.trim())) ||
+    ("duration" in body &&
+      (typeof body.duration !== "number" || body.duration <= 0)) ||
+    ("budget" in body && 
+      (typeof body.budget !== "number" || body.budget <= 0)) ||
+    ("description" in body &&
+      (typeof body.description !== "string" || !body.description.trim())) ||
+    ("imageUrl" in body &&
+      (typeof body.imageUrl !== "string" || !body.imageUrl.trim())) 
+    )  
+  {
+    return res.sendStatus(400);
+  }
+
+  const { title, director, duration, budget, description, imageUrl }: Partial<newFilm> = body;
+
+  if (title) {
+    film.title = title;
+  }
+  if (director) {
+    film.director = director;
+  }
+  if (duration) {
+    film.duration = duration;
+  }
+  if (budget) {
+    film.budget = budget; 
+  }
+  if (description) {
+    film.description = description;
+  }
+  if (imageUrl) {
+    film.imageUrl = imageUrl;
+  }
+
+  return res.json(film);
+});
+
+
+router.put("/:id", (req, res) => {
+  const body: unknown = req.body;
+
+  if(
+    !body ||
+    typeof body !== "object" ||
+    !("title" in body) ||
+    !("director" in body) ||
+    !("duration" in body) ||
+    typeof body.title !== "string" ||
+    typeof body.director !== "string" ||
+    typeof body.duration !== "number" ||
+    !body.title.trim() ||
+    !body.director.trim() ||
+    isNaN(body.duration) ||
+    body.duration <= 0 ||
+    (("budget" in body) && (typeof body.budget !== "number" ||isNaN(body.budget)|| body.budget < 0)) ||
+    (("description" in body) && (typeof body.description !== "string" || !body.description.trim())) ||
+    (("imageUrl" in body) && (typeof body.imageUrl !== "string" || !body.imageUrl.trim())
+  )) {
+    return res.sendStatus(400);
+  }
+  const { title, director, duration, budget, description, imageUrl }: newFilm = body as newFilm;
+  const id = Number(req.params.id);
+  const film = films.find((film) => film.id === id);
+  if (!title || !director || !duration) {
+    return res.sendStatus(400);
+  }
+  if (!film) {
+    const newFilm = { id, title, director, duration, budget, description, imageUrl };
+    films.push(newFilm);
+    res.json(newFilm);
+  } else {
+    film.title = title;
+    film.director = director;
+    film.duration = duration;
+    if(budget){
+      film.budget = budget;
+    }
+    if(description){
+      film.description = description;
+    }
+    if(imageUrl){
+      film.imageUrl = imageUrl;
+    }
+  }
+  return res.json(film);
+});
+
 export default router;
