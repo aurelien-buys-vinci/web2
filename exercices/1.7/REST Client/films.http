@@ -1,0 +1,43 @@
+@baseUrl = http://localhost:3000/films
+
+###READ ALL FILTERED
+GET {{baseUrl}}/?minimum-duration=1
+
+###REAL ONE FILM
+
+GET {{baseUrl}}/1
+
+###CREATE FILM
+
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+    "title":"testcdhs",
+    "director":"goerge",
+    "duration":134,
+    "description":"ubniezub"
+}
+
+### Delete a film
+DELETE {{baseUrl}}/5
+
+### Update a film
+PATCH {{baseUrl}}/1
+Content-Type: application/json
+
+{
+    "title":"Citronnade"
+}
+
+### Put a film
+
+PUT {{baseUrl}}/7
+Content-Type: application/json
+
+{
+    "title":"Citronnade",
+    "director":"goerge",
+    "duration":134,
+    "description":"ubniezub"
+}
