@@ -15,10 +15,8 @@ const ClickCounter = ({message1}:ClickCounterProps) => {
     
     
     return (
-        <button onClick={() => setCount((count) => count + 1)} onMouseUp={handleMouse} onMouseLeave={handleMouse}>
-            {count >= 10 ? message1 : ""}
-            <br/>
-            count is {count}
+        <button onClick={() => setCount((count) => count + 1)} onMouseEnter={handleMouse} onMouseLeave={handleMouse}>
+            {mouseOn ? "Please click on me now !" : (count >= 10 ? message1+"\n" : "") + "count is "+(count)}            
         </button>
     )
 }
