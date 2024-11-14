@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import './Boite.css'
 
 interface Couleur {
     id: number;
@@ -42,8 +43,8 @@ const Boite = () => {
     };
 
     return (
-        <div style={{ backgroundColor: couleur.couleur }} >
-            <button onClick={handleClick}>
+        <div className="boite" style={{ backgroundColor: couleur.couleur }} >
+            <button className="boite-button" onClick={handleClick}>
                 {couleur.couleurApres ? couleursFr[couleur.couleurApres.id] : ''}
             </button>
             <p>{couleursFr[couleur.id]}</p>
