@@ -6,6 +6,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from './components/HomePage/index'
 import CinemaPage from './components/CinemaPage/index'
 import MovieListPage from './components/MovieListPage/index'
+import AddMoviePage from './components/MovieListPage/AddMoviePage'
 
 
 const router = createBrowserRouter([
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "movies",
         element: <MovieListPage />,
+      },
+      {
+        path: "add-movie",
+        element: <AddMoviePage />,
       }
     ],
   },
