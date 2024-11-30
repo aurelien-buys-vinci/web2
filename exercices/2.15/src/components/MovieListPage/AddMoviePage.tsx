@@ -9,9 +9,9 @@ const addMoviePage = () => {
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [director, setDirector] = useState("");
-    const [dureation, setDureation] = useState(0);
-    const [imageUrl, setImageUrl] = useState("");
-    const [description, setDescription] = useState("");
+    const [duration, setDureation] = useState(0);
+    const [imageUrl, setImageUrl] = useState<string | undefined>(undefined);
+    const [description, setDescription] = useState<string | undefined>(undefined);
     const [budget, setBudget] = useState<number | undefined>(undefined);
 
     const handleTitleChange = (e: SyntheticEvent) => {
@@ -49,7 +49,7 @@ const addMoviePage = () => {
         const newMovie = {
             title: title,
             director: director,
-            dureation: dureation,
+            duration: duration,
             imageUrl: imageUrl,
             description: description,
             budget: budget,
