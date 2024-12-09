@@ -1,5 +1,17 @@
 import { Request } from "express";
 
+interface Film {
+  id: number;
+  title: string;
+  director: string;
+  duration: number;
+  budget?: number;
+  description?: string;
+  imageUrl?: string;
+}
+
+type newFilm= Omit<Film, "id">;
+
 interface Pizza {
   id: number;
   title: string;
@@ -57,4 +69,6 @@ export type {
   PotentialUser,
   AuthenticatedRequest,
   JwtPayload,
+  Film,
+  newFilm,
 };
