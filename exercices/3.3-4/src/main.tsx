@@ -8,6 +8,8 @@ import CinemaPage from './components/CinemaPage/index'
 import MovieListPage from './components/MovieListPage/index'
 import AddMoviePage from './components/MovieListPage/AddMoviePage'
 import MoviePage from './components/MovieListPage/MoviePage'
+import RegisterPage from './components/User/Register';
+import LoginPage from './components/User/Login';
 
 
 const router = createBrowserRouter([
@@ -34,7 +36,15 @@ const router = createBrowserRouter([
       {
         path: "movies/:id",
         element: <MoviePage />
-      }
+      },
+      {
+        path: "register",
+        element: <RegisterPage />,
+      },
+      {
+        path: "login",
+        element: <LoginPage />,
+      },
     ],
   },
 ]);

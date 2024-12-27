@@ -15,6 +15,20 @@ interface CinemaContext {
     setMovies: (movies: Movie[]) => void;
     addMovie: (newMovie: NewMovie) => void;
     deleteMovie: (id: number) => void;
+    registerUser: (user: User) => void;
+    loginUser: (user: User) => void;
   }
 
-export type {Movie, CinemaContext, NewMovie};
+  interface User {
+    username: string;
+    password: string;
+  }
+  
+  interface AuthenticatedUser {
+    username: string;
+    token: string;
+  }
+  
+  type MaybeAuthenticatedUser = AuthenticatedUser | undefined;
+
+export type {Movie, CinemaContext, NewMovie, User, AuthenticatedUser, MaybeAuthenticatedUser};
