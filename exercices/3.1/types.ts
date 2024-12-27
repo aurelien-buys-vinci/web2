@@ -48,6 +48,15 @@ interface User {
 
 type PotentialUser = Omit<User, "id">;
 
+interface Comment {
+  id: number;
+  filmId: number;
+  userId: number;
+  content: string;
+}
+
+type newComment = Omit<Comment, "id">;
+
 interface AuthenticatedRequest extends Request {
   user?: User;
 }
@@ -71,4 +80,6 @@ export type {
   JwtPayload,
   Film,
   newFilm,
+  Comment,
+  newComment,
 };

@@ -6,6 +6,7 @@ import pizzaRouter from "./routes/pizzas";
 import drinkRouter from "./routes/drinks";
 import authsRouter from "./routes/auths";
 import filmsRouter from "./routes/films";
+import commentsRouter from "./routes/comments";
 
 
 const app = express();
@@ -32,6 +33,7 @@ app.use("/pizzas", pizzaRouter);
 app.use("/drinks", drinkRouter);
 app.use("/auths", authsRouter);
 app.use("/films", filmsRouter);
+app.use("/comments", commentsRouter);
 
 
 
