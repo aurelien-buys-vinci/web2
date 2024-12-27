@@ -17,6 +17,7 @@ interface CinemaContext {
     deleteMovie: (id: number) => void;
     registerUser: (user: User) => void;
     loginUser: (user: User) => void;
+    authenticatedUser: MaybeAuthenticatedUser;
   }
 
   interface User {

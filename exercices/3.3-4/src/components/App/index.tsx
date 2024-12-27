@@ -20,9 +20,8 @@ const NavBar = ({authenticatedUser, clearUser} : NavBarProps) => {
       <button onClick={() => navigate("/")}>Home</button>
       <button onClick={() => navigate("/cinema")}>cinema</button>
       <button onClick={() => navigate("/movies")}> movies</button>
-      <button onClick={() => navigate("/add-movie")}>Add movie</button>
       {authenticatedUser ? (
-        <button onClick={() => clearUser()}>Logout</button>
+        <><button onClick={() => navigate("/add-movie")}>Add movie</button><button onClick={() => clearUser()}>Logout</button></>
       ) : (
         <><button onClick={() => navigate("/register")}>Register</button><button onClick={() => navigate("/login")}>Login</button></>
       )}
@@ -66,10 +65,14 @@ const App = () => {
 
   const deleteMovie = async (id: Number) => {
     try {
+      if (!authenticatedUser) {
+        throw new Error("You must be authenticated to add a movie");
+      }
       const options = {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
+          Authorization: authenticatedUser.token
         },
       };
 
@@ -83,11 +86,15 @@ const App = () => {
 
   const addMovie = async (newMovie: NewMovie) => {
     try {
+      if (!authenticatedUser) {
+        throw new Error("You must be authenticated to add a movie");
+      }
       const options = {
         method: "POST",
         body: JSON.stringify(newMovie),
         headers: {
           "Content-Type": "application/json",
+          Authorization: authenticatedUser.token
         },
       };
 
@@ -167,6 +174,7 @@ const App = () => {
     deleteMovie,
     registerUser,
     loginUser,
+    authenticatedUser,
   };
 
   const toggleTheme = () => {
