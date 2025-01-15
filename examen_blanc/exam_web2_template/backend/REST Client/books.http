@@ -1,0 +1,19 @@
+@baseUrl = http://localhost:3000
+
+GET {{baseUrl}}/books
+Authorization: {{admin.response.body.token}}
+
+### Read a single drink
+GET {{baseUrl}}/books/3
+Authorization: {{admin.response.body.token}}
+
+
+##### Define a request variable nammed admin :
+# @name admin
+POST {{baseUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
